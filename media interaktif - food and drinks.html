@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Bahasa Inggris Kelas 3 - Pertemuan 1 | SDN 7 Baru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563eb',
+                            teal: '#0d9488',
+                            yellow: '#f59e0b',
+                            pink: '#ec4899',
+                            purple: '#8b5cf6',
+                            bg: '#f0f9ff'
+                        }
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0fdf4;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+        .pid-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            touch-action: manipulation;
+        }
+        .pid-btn:active {
+            transform: scale(0.95);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .pulse-subtle {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        /* Custom scrollbar for touchscreen PID */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- HEADER / NAVIGATION BAR UNTUK PID -->
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/20 p-3 rounded-2xl backdrop-blur-md">
+                    <i class="fa-solid fa-chalkboard-user text-3xl text-yellow-300"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="bg-yellow-400 text-slate-900 font-bold px-2 py-0.5 rounded-full text-xs uppercase tracking-wide">PID Media</span>
+                        <span class="text-xs text-blue-100 font-medium">SDN 7 Baru • Fase C / Kelas III</span>
+                        <span class="bg-sky-500 text-white font-bold px-2 py-0.5 rounded-full text-xs flex items-center gap-1 shadow"><i class="fa-solid fa-child text-yellow-300"></i> Suara Anak Laki-laki (Budi)</span>
+                    </div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tight">Basic Food & Drinks at Home & School</h1>
+                </div>
+            </div>
+
+            <!-- TABS PEMBELAJARAN LENGKAP PID -->
+            <div class="flex items-center gap-2 overflow-x-auto py-1">
+                <button onclick="switchTab('tab-pendahuluan')" id="btn-tab-pendahuluan" class="pid-btn nav-tab-btn bg-white text-blue-700 font-bold px-4 py-2 rounded-xl text-sm md:text-base flex items-center gap-2 shadow-md">
+                    <i class="fa-solid fa-flag"></i> 1. Pendahuluan
+                </button>
+                <button onclick="switchTab('tab-inti')" id="btn-tab-inti" class="pid-btn nav-tab-btn bg-white/20 hover:bg-white/30 text-white font-bold px-4 py-2 rounded-xl text-sm md:text-base flex items-center gap-2">
+                    <i class="fa-solid fa-puzzle-piece"></i> 2. Kegiatan Inti
+                </button>
+                <button onclick="switchTab('tab-penutup')" id="btn-tab-penutup" class="pid-btn nav-tab-btn bg-white/20 hover:bg-white/30 text-white font-bold px-4 py-2 rounded-xl text-sm md:text-base flex items-center gap-2">
+                    <i class="fa-solid fa-star"></i> 3. Penutup & Refleksi
+                </button>
+                <button onclick="toggleFullscreen()" title="Layar Penuh PID" class="pid-btn bg-yellow-400 text-slate-900 font-bold p-2.5 rounded-xl text-sm hover:bg-yellow-300 ml-2">
+                    <i class="fa-solid fa-expand text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER UTAMA -->
+    <main class="max-w-7xl mx-auto w-full p-4 md:p-6 flex-grow">
+
+        <!-- ========================================== -->
+        <!-- TAB 1: KEGIATAN PENDAHULUAN (15 MENIT)    -->
+        <!-- ========================================== -->
+        <section id="tab-pendahuluan" class="tab-content space-y-6">
+            
+            <!-- Banner Indikator & Langkah -->
+            <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4 flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="bg-blue-600 text-white font-bold text-lg w-10 h-10 rounded-xl flex items-center justify-center">15'</span>
+                    <div>
+                        <h2 class="text-lg font-bold text-blue-900">Langkah Pendahuluan: Memahami (Berkesadaran & Bermakna)</h2>
+                        <p class="text-sm text-blue-700">Apersepsi, Audio Listening Prompt, Diagnostic Assessor, & Flashcard Multimodal</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="playGreetingSound()" class="pid-btn bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 shadow">
+                        <i class="fa-solid fa-volume-high text-lg"></i> Sapaan Budi ("Good Morning!")
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid 2 Kolom: Pemantik Visual + Audio Listening -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- 1. Pemantik Visual Canteen vs Home -->
+                <div class="bg-white rounded-3xl p-6 border-2 border-slate-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-purple-100 text-purple-700 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-image"></i> Visual Pemantik PID</span>
+                            <span class="text-xs text-slate-500 font-bold">Pertanyaan Lisan Guru</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Home Breakfast vs School Canteen</h3>
+                        <p class="text-slate-600 text-sm mb-4">Tanyakan kepada siswa: <i>"What did you eat for breakfast this morning? Do you see your breakfast on this screen?"</i></p>
+                        
+                        <!-- Gambar Dual Display -->
+                        <div class="grid grid-cols-2 gap-4 my-2">
+                            <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 text-center hover:scale-105 transition-transform">
+                                <div class="text-5xl mb-2">🍳 🥛 🍞</div>
+                                <span class="font-bold text-amber-800 text-sm block">Breakfast at Home</span>
+                                <span class="text-xs text-amber-600">Nasi, Telur, Susu, Roti</span>
+                            </div>
+                            <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-3 text-center hover:scale-105 transition-transform">
+                                <div class="text-5xl mb-2">🍗 🧃 🍜</div>
+                                <span class="font-bold text-teal-800 text-sm block">School Canteen</span>
+                                <span class="text-xs text-teal-600">Ayam Goreng, Jus, Mie</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
+                        <span class="text-xs text-slate-500">Sentuh gambar untuk memperbesar fokus diskusi</span>
+                        <button onclick="speakText('What did you eat for breakfast today?')" class="pid-btn bg-purple-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-bullhorn"></i> Putar Suara Pertanyaan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Audio Listening Prompt (TPACK Level III) -->
+                <div class="bg-white rounded-3xl p-6 border-2 border-blue-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-blue-100 text-blue-700 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-headphones"></i> Listening Prompt Interaktif</span>
+                            <span class="bg-emerald-100 text-emerald-700 font-bold text-xs px-2 py-0.5 rounded">TPACK III</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Percakapan Lisan: Budi & Siti</h3>
+                        <p class="text-slate-600 text-sm mb-4">Putar audio dialog di PID. Minta siswa menyimak kosa kata makanan/minuman yang diucapkan!</p>
+                        
+                        <!-- Box Dialog Audio Player -->
+                        <div class="bg-slate-900 text-white rounded-2xl p-4 mb-4 relative overflow-hidden">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
+                                    <span class="text-xs font-mono text-emerald-400">AUDIO_PLAYER_PID_SDN7.WAV</span>
+                                </div>
+                                <span class="text-xs text-slate-400">Bahasa Inggris (US)</span>
+                            </div>
+                            
+                            <p id="dialog-text" class="text-amber-300 font-bold text-base leading-relaxed mb-3 italic">
+                                "Hi, I am Budi. For lunch at home, I eat fried chicken and rice, and I drink water. My friend Siti drinks milk!"
+                            </p>
+
+                            <div class="flex items-center gap-3">
+                                <button onclick="playDialogAudio()" id="btn-play-dialog" class="pid-btn bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-play"></i> Putar Audio Story
+                                </button>
+                                <button onclick="stopAudio()" class="pid-btn bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-xl text-sm">
+                                    <i class="fa-solid fa-stop"></i> Stop
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Asesmen Awal Diagnostik Interaktif -->
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+                        <h4 class="font-bold text-amber-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-amber-600"></i> Asesmen Awal Diagnostik Lisan Guru:
+                        </h4>
+                        <p class="text-xs text-amber-800 mb-3">Siswa diminta menyebutkan 3 nama makanan/minuman yang didengar dari audio!</p>
+                        <div class="grid grid-cols-2 gap-2 text-center">
+                            <div class="bg-white p-2 rounded-xl border border-emerald-300">
+                                <span class="text-xs font-bold text-emerald-700 block">Kategori Siap Belajar (>2 kata)</span>
+                                <span class="text-xs text-slate-500">Menjadi pendamping kelompok</span>
+                            </div>
+                            <div class="bg-white p-2 rounded-xl border border-amber-300">
+                                <span class="text-xs font-bold text-amber-700 block">Butuh Dukungan (1 kata)</span>
+                                <span class="text-xs text-slate-500">Pendampingan Flashcard PID</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. FLASHCARDS MULTIMODAL INTERAKTIF (LENGKAP DENGAN AUDIO & EJAAN) -->
+            <div class="bg-white rounded-3xl p-6 border-2 border-teal-200 card-shadow">
+                <div class="flex flex-wrap justify-between items-center mb-6 gap-3">
+                    <div>
+                        <span class="bg-teal-100 text-teal-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-layer-group"></i> Multimodal Vocabulary Bank</span>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">Siswa Membaca Teks Multimodal & Ejaan</h3>
+                    </div>
+                    <p class="text-xs text-slate-500 max-w-md">Sentuh kartu di layar PID untuk mendengarkan pengucapan alami dan ejaan kosa kata kunci pertemuan 1.</p>
+                </div>
+
+                <!-- Cards Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <!-- Flashcard 1: Rice -->
+                    <div onclick="speakVocab('Rice')" class="pid-btn cursor-pointer bg-gradient-to-b from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-4 text-center hover:shadow-lg transition-all transform hover:-translate-y-1">
+                        <div class="text-5xl mb-2">🍚</div>
+                        <h4 class="font-bold text-slate-800 text-lg">Rice</h4>
+                        <p class="text-xs text-amber-700 font-semibold mb-2">Nasi</p>
+                        <span class="bg-amber-200 text-amber-900 text-xs font-bold px-2.5 py-1 rounded-full block"><i class="fa-solid fa-volume-high"></i> Dengarkan</span>
+                    </div>
+
+                    <!-- Flashcard 2: Milk -->
+                    <div onclick="speakVocab('Milk')" class="pid-btn cursor-pointer bg-gradient-to-b from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl p-4 text-center hover:shadow-lg transition-all transform hover:-translate-y-1">
+                        <div class="text-5xl mb-2">🥛</div>
+                        <h4 class="font-bold text-slate-800 text-lg">Milk</h4>
+                        <p class="text-xs text-blue-700 font-semibold mb-2">Susu</p>
+                        <span class="bg-blue-200 text-blue-900 text-xs font-bold px-2.5 py-1 rounded-full block"><i class="fa-solid fa-volume-high"></i> Dengarkan</span>
+                    </div>
+
+                    <!-- Flashcard 3: Fried Chicken -->
+                    <div onclick="speakVocab('Fried Chicken')" class="pid-btn cursor-pointer bg-gradient-to-b from-orange-50 to-red-50 border-2 border-orange-200 rounded-2xl p-4 text-center hover:shadow-lg transition-all transform hover:-translate-y-1">
+                        <div class="text-5xl mb-2">🍗</div>
+                        <h4 class="font-bold text-slate-800 text-base">Fried Chicken</h4>
+                        <p class="text-xs text-orange-700 font-semibold mb-2">Ayam Goreng</p>
+                        <span class="bg-orange-200 text-orange-900 text-xs font-bold px-2.5 py-1 rounded-full block"><i class="fa-solid fa-volume-high"></i> Dengarkan</span>
+                    </div>
+
+                    <!-- Flashcard 4: Water -->
+                    <div onclick="speakVocab('Water')" class="pid-btn cursor-pointer bg-gradient-to-b from-sky-50 to-indigo-50 border-2 border-sky-200 rounded-2xl p-4 text-center hover:shadow-lg transition-all transform hover:-translate-y-1">
+                        <div class="text-5xl mb-2">💧</div>
+                        <h4 class="font-bold text-slate-800 text-lg">Water</h4>
+                        <p class="text-xs text-sky-700 font-semibold mb-2">Air Putih</p>
+                        <span class="bg-sky-200 text-sky-900 text-xs font-bold px-2.5 py-1 rounded-full block"><i class="fa-solid fa-volume-high"></i> Dengarkan</span>
+                    </div>
+
+                    <!-- Flashcard 5: Apple -->
+                    <div onclick="speakVocab('Apple')" class="pid-btn cursor-pointer bg-gradient-to-b from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-4 text-center hover:shadow-lg transition-all transform hover:-translate-y-1">
+                        <div class="text-5xl mb-2">🍎</div>
+                        <h4 class="font-bold text-slate-800 text-lg">Apple</h4>
+                        <p class="text-xs text-red-700 font-semibold mb-2">Apel</p>
+                        <span class="bg-red-200 text-red-900 text-xs font-bold px-2.5 py-1 rounded-full block"><i class="fa-solid fa-volume-high"></i> Dengarkan</span>
+                    </div>
+
+                    <!-- Flashcard 6: Noodles -->
+                    <div onclick="speakVocab('Noodles')" class="pid-btn cursor-pointer bg-gradient-to-b from-yellow-50 to-amber-50 border-2 border-yellow-200 rounded-2xl p-4 text-center hover:shadow-lg transition-all transform hover:-translate-y-1">
+                        <div class="text-5xl mb-2">🍜</div>
+                        <h4 class="font-bold text-slate-800 text-lg">Noodles</h4>
+                        <p class="text-xs text-yellow-700 font-semibold mb-2">Mie</p>
+                        <span class="bg-yellow-200 text-yellow-900 text-xs font-bold px-2.5 py-1 rounded-full block"><i class="fa-solid fa-volume-high"></i> Dengarkan</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: KEGIATAN INTI (45 MENIT)            -->
+        <!-- ========================================== -->
+        <section id="tab-inti" class="tab-content hidden space-y-6">
+            
+            <!-- Banner Indikator & Langkah -->
+            <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-4 flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="bg-teal-600 text-white font-bold text-lg w-10 h-10 rounded-xl flex items-center justify-center">45'</span>
+                    <div>
+                        <h2 class="text-lg font-bold text-teal-900">Langkah Inti: Mengaplikasi (Menggembirakan & Kolaboratif)</h2>
+                        <p class="text-sm text-teal-700">Diskusi Kelompok (Leader, Reader, Recorder, Presenter), LKPD 1 Digital, & Tally Numerasi Minuman</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="bg-white px-3 py-1.5 rounded-xl border border-teal-300 font-bold text-xs text-teal-800">Model: Cooperative Learning + TPR</span>
+                </div>
+            </div>
+
+            <!-- 1. SIMULASI PEMBAGIAN KELOMPOK & PERAN DI PID -->
+            <div class="bg-white rounded-3xl p-6 border-2 border-indigo-100 card-shadow">
+                <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+                    <div>
+                        <span class="bg-indigo-100 text-indigo-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-users text-indigo-600"></i> Pengorganisasian Kelompok</span>
+                        <h3 class="text-xl font-bold text-slate-800 mt-1">Struktur Peran Kelompok Kecil (3-4 Siswa)</h3>
+                    </div>
+                    <button onclick="randomizeRoles()" class="pid-btn bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 shadow">
+                        <i class="fa-solid fa-dice"></i> Acak Pengingat Peran Kelompok
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-blue-50 border border-blue-200 p-4 rounded-2xl text-center">
+                        <div class="text-3xl mb-1">👑</div>
+                        <h4 class="font-bold text-blue-900 text-base">Leader</h4>
+                        <p class="text-xs text-blue-700">Memimpin alur diskusi kelompok</p>
+                    </div>
+                    <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl text-center">
+                        <div class="text-3xl mb-1">📖</div>
+                        <h4 class="font-bold text-emerald-900 text-base">Reader</h4>
+                        <p class="text-xs text-emerald-700">Membaca soal pada LKPD 1</p>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl text-center">
+                        <div class="text-3xl mb-1">✏️</div>
+                        <h4 class="font-bold text-amber-900 text-base">Recorder</h4>
+                        <p class="text-xs text-amber-700">Mencatat hasil jawaban kelompok</p>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-200 p-4 rounded-2xl text-center">
+                        <div class="text-3xl mb-1">🎤</div>
+                        <h4 class="font-bold text-purple-900 text-base">Presenter</h4>
+                        <p class="text-xs text-purple-700">Menyampaikan hasil di depan PID</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid 2 Kolom: LKPD 1 Digital Interaktif + Simulation Tally Numerasi -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- 2. LKPD 1 DIGITAL INTERAKTIF (CERITA SINTA) -->
+                <div class="bg-white rounded-3xl p-6 border-2 border-emerald-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-file-pen"></i> LKPD 1 Interaktif PID</span>
+                            <span class="text-xs font-bold text-emerald-600">Identifikasi Teks Cerita</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Bekal Sekolah Sinta (Sinta's Lunch Box)</h3>
+                        <p class="text-xs text-slate-600 mb-3">Minta perwakilan murid maju ke PID untuk **mengetuk (tap)** semua kata nama makanan/minuman Bahasa Inggris yang ditemukan dalam cerita!</p>
+
+                        <!-- Box Stimulus Cerita -->
+                        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 text-slate-800 leading-relaxed font-medium mb-4 text-base">
+                            "Today is Monday. Budi brings a lunch box to school. Inside the box, there is 
+                            <button onclick="checkWord(this, true)" class="lkpd-word px-2 py-0.5 rounded bg-white border border-slate-300 font-bold text-blue-700 hover:bg-yellow-200">fried chicken</button> 
+                            and 
+                            <button onclick="checkWord(this, true)" class="lkpd-word px-2 py-0.5 rounded bg-white border border-slate-300 font-bold text-blue-700 hover:bg-yellow-200">rice</button>. 
+                            He also brings a bottle of 
+                            <button onclick="checkWord(this, true)" class="lkpd-word px-2 py-0.5 rounded bg-white border border-slate-300 font-bold text-blue-700 hover:bg-yellow-200">water</button>. 
+                            His friend, Siti, brings an 
+                            <button onclick="checkWord(this, true)" class="lkpd-word px-2 py-0.5 rounded bg-white border border-slate-300 font-bold text-blue-700 hover:bg-yellow-200">apple</button> 
+                            and a box of 
+                            <button onclick="checkWord(this, true)" class="lkpd-word px-2 py-0.5 rounded bg-white border border-slate-300 font-bold text-blue-700 hover:bg-yellow-200">milk</button>."
+                        </div>
+
+                        <!-- Progress / Rekap Kata Teridentifikasi -->
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 mb-2">
+                            <span class="text-xs font-bold text-slate-600 block mb-1">Kata Teridentifikasi:</span>
+                            <div id="found-words-container" class="flex flex-wrap gap-2">
+                                <span class="text-xs italic text-slate-400">Belum ada kata yang diklik di PID...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-3 border-t border-slate-100">
+                        <span id="lkpd-score" class="text-xs font-bold text-emerald-700">Skor LKPD 1: 0 / 100</span>
+                        <button onclick="resetLKPD1()" class="pid-btn bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold">
+                            <i class="fa-solid fa-arrow-rotate-right"></i> Reset LKPD
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. AKTIVITAS NUMERASI KONKRET (SURVEI MINUMAN KELOMPOK) -->
+                <div class="bg-white rounded-3xl p-6 border-2 border-blue-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-blue-100 text-blue-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-chart-column"></i> Numerasi Konkret PID</span>
+                            <span class="text-xs font-bold text-blue-600">Survei Pilihan Minuman</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Tally Pilihan Minuman Kelompok</h3>
+                        <p class="text-xs text-slate-600 mb-4">Murid menghitung jumlah anggota kelompok yang membawa/menyukai <b>Water</b> vs <b>Milk</b> di layar PID.</p>
+
+                        <!-- Counter Tool PID Interactive -->
+                        <div class="space-y-4 mb-4">
+                            <!-- Water Counter -->
+                            <div class="bg-sky-50 border border-sky-200 p-3 rounded-2xl flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-3xl">💧</span>
+                                    <div>
+                                        <h4 class="font-bold text-sky-900 text-base">Water (Air Putih)</h4>
+                                        <p class="text-xs text-sky-700">Siswa yang membawa water</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="updateDrinkCount('water', -1)" class="pid-btn bg-white border-2 border-sky-300 text-sky-800 font-bold w-10 h-10 rounded-xl text-xl shadow">-</button>
+                                    <span id="count-water" class="font-bold text-2xl text-sky-900 w-8 text-center">0</span>
+                                    <button onclick="updateDrinkCount('water', 1)" class="pid-btn bg-sky-600 text-white font-bold w-10 h-10 rounded-xl text-xl shadow">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Milk Counter -->
+                            <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-2xl flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-3xl">🥛</span>
+                                    <div>
+                                        <h4 class="font-bold text-indigo-900 text-base">Milk (Susu)</h4>
+                                        <p class="text-xs text-indigo-700">Siswa yang membawa milk</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="updateDrinkCount('milk', -1)" class="pid-btn bg-white border-2 border-indigo-300 text-indigo-800 font-bold w-10 h-10 rounded-xl text-xl shadow">-</button>
+                                    <span id="count-milk" class="font-bold text-2xl text-indigo-900 w-8 text-center">0</span>
+                                    <button onclick="updateDrinkCount('milk', 1)" class="pid-btn bg-indigo-600 text-white font-bold w-10 h-10 rounded-xl text-xl shadow">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Calculation Box -->
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded-2xl flex justify-between items-center">
+                            <div>
+                                <span class="text-xs text-blue-200 block uppercase font-bold tracking-wider">Total Anggota Terhitung</span>
+                                <h4 id="total-drink-members" class="text-2xl font-bold">0 Orang</h4>
+                            </div>
+                            <button onclick="playSuccessSound()" class="pid-btn bg-yellow-400 text-slate-900 font-bold px-3 py-1.5 rounded-xl text-xs">
+                                <i class="fa-solid fa-calculator"></i> Verifikasi Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. PID INTERACTIVE MATCHING GAME (PENJODOHAN AUDIO & GAMBAR) -->
+            <div class="bg-white rounded-3xl p-6 border-2 border-purple-200 card-shadow">
+                <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+                    <div>
+                        <span class="bg-purple-100 text-purple-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-gamepad"></i> Game Interactive Matching</span>
+                        <h3 class="text-xl font-bold text-slate-800 mt-1">Jodohkan Audio Penyebut dengan Gambar Makanan</h3>
+                    </div>
+                    <span class="text-xs text-slate-500">Sentuh tombol Suara lalu sentuh Gambar pasangan yang tepat di PID!</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Target 1 -->
+                    <div class="border-2 border-slate-200 p-4 rounded-2xl text-center bg-slate-50">
+                        <button onclick="playMatchAudio('fried_chicken')" class="pid-btn bg-amber-500 hover:bg-amber-600 text-white font-bold px-4 py-2 rounded-xl text-sm mb-3 w-full flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-volume-high"></i> Play Audio #1
+                        </button>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="checkMatch('fried_chicken', 'rice')" class="p-2 border rounded-xl hover:bg-amber-100 text-2xl">🍚</button>
+                            <button onclick="checkMatch('fried_chicken', 'fried_chicken')" class="p-2 border rounded-xl hover:bg-amber-100 text-2xl">🍗</button>
+                            <button onclick="checkMatch('fried_chicken', 'milk')" class="p-2 border rounded-xl hover:bg-amber-100 text-2xl">🥛</button>
+                        </div>
+                    </div>
+
+                    <!-- Target 2 -->
+                    <div class="border-2 border-slate-200 p-4 rounded-2xl text-center bg-slate-50">
+                        <button onclick="playMatchAudio('milk')" class="pid-btn bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-sm mb-3 w-full flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-volume-high"></i> Play Audio #2
+                        </button>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="checkMatch('milk', 'apple')" class="p-2 border rounded-xl hover:bg-blue-100 text-2xl">🍎</button>
+                            <button onclick="checkMatch('milk', 'noodles')" class="p-2 border rounded-xl hover:bg-blue-100 text-2xl">🍜</button>
+                            <button onclick="checkMatch('milk', 'milk')" class="p-2 border rounded-xl hover:bg-blue-100 text-2xl">🥛</button>
+                        </div>
+                    </div>
+
+                    <!-- Target 3 -->
+                    <div class="border-2 border-slate-200 p-4 rounded-2xl text-center bg-slate-50">
+                        <button onclick="playMatchAudio('apple')" class="pid-btn bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-xl text-sm mb-3 w-full flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-volume-high"></i> Play Audio #3
+                        </button>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="checkMatch('apple', 'apple')" class="p-2 border rounded-xl hover:bg-red-100 text-2xl">🍎</button>
+                            <button onclick="checkMatch('apple', 'water')" class="p-2 border rounded-xl hover:bg-red-100 text-2xl">💧</button>
+                            <button onclick="checkMatch('apple', 'rice')" class="p-2 border rounded-xl hover:bg-red-100 text-2xl">🍚</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 3: KEGIATAN PENUTUP (10 MENIT)        -->
+        <!-- ========================================== -->
+        <section id="tab-penutup" class="tab-content hidden space-y-6">
+            
+            <!-- Banner Indikator & Langkah -->
+            <div class="bg-purple-50 border-2 border-purple-200 rounded-2xl p-4 flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="bg-purple-600 text-white font-bold text-lg w-10 h-10 rounded-xl flex items-center justify-center">10'</span>
+                    <div>
+                        <h2 class="text-lg font-bold text-purple-900">Langkah Penutup: Merefleksi (Berkesadaran & Penguatan)</h2>
+                        <p class="text-sm text-purple-700">Rangkuman Kosa Kata, Refleksi Perasaan Sentuh PID, & Persiapan Pertemuan 2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- 1. RANGKUMAN KOSA KATA TERORGANISIR -->
+                <div class="bg-white rounded-3xl p-6 border-2 border-indigo-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <span class="bg-indigo-100 text-indigo-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block"><i class="fa-solid fa-book"></i> Vocabulary Summary</span>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Rangkuman Kosa Kata Hari Ini</h3>
+
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div class="bg-amber-50 p-3 rounded-2xl border border-amber-200">
+                                <h4 class="font-bold text-amber-900 text-sm mb-2">🍔 Food (Makanan)</h4>
+                                <ul class="text-xs text-amber-800 space-y-1">
+                                    <li>• <b>Rice</b> = Nasi</li>
+                                    <li>• <b>Fried Chicken</b> = Ayam Goreng</li>
+                                    <li>• <b>Noodles</b> = Mie</li>
+                                    <li>• <b>Apple</b> = Apel</li>
+                                </ul>
+                            </div>
+                            <div class="bg-sky-50 p-3 rounded-2xl border border-sky-200">
+                                <h4 class="font-bold text-sky-900 text-sm mb-2">🥤 Drinks (Minuman)</h4>
+                                <ul class="text-xs text-sky-800 space-y-1">
+                                    <li>• <b>Water</b> = Air Putih</li>
+                                    <li>• <b>Milk</b> = Susu</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Sentence Model -->
+                        <div class="bg-slate-900 text-white p-3 rounded-2xl">
+                            <span class="text-xs text-yellow-400 font-bold uppercase tracking-wider block mb-1">Useful Sentences:</span>
+                            <p class="text-xs italic">"I eat rice and fried chicken."</p>
+                            <p class="text-xs italic">"She drinks a glass of milk."</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-100">
+                        <button onclick="speakVocab('Rice, Fried Chicken, Noodles, Apple, Water, Milk')" class="pid-btn w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-volume-high"></i> Putar Semua Suara Rangkuman
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. REFLEKSI SISWA INTERAKTIF SENTUH PID -->
+                <div class="bg-white rounded-3xl p-6 border-2 border-pink-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <span class="bg-pink-100 text-pink-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block"><i class="fa-solid fa-heart"></i> Student Reflection</span>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Refleksi Pembelajaran Siswa</h3>
+                        <p class="text-xs text-slate-600 mb-4">Minta perwakilan siswa menyentuh emosi perasaannya hari ini di PID!</p>
+
+                        <!-- Interactive Feeling Selector -->
+                        <div class="grid grid-cols-3 gap-3 mb-6 text-center">
+                            <button onclick="selectFeeling(this, 'Sangat Senang')" class="pid-btn feeling-btn border-2 border-slate-200 p-3 rounded-2xl hover:bg-pink-50">
+                                <div class="text-4xl mb-1">😃</div>
+                                <span class="text-xs font-bold text-slate-700 block">Sangat Senang</span>
+                            </button>
+                            <button onclick="selectFeeling(this, 'Senang')" class="pid-btn feeling-btn border-2 border-slate-200 p-3 rounded-2xl hover:bg-amber-50">
+                                <div class="text-4xl mb-1">🙂</div>
+                                <span class="text-xs font-bold text-slate-700 block">Senang</span>
+                            </button>
+                            <button onclick="selectFeeling(this, 'Cukup Senang')" class="pid-btn feeling-btn border-2 border-slate-200 p-3 rounded-2xl hover:bg-blue-50">
+                                <div class="text-4xl mb-1">😐</div>
+                                <span class="text-xs font-bold text-slate-700 block">Cukup Senang</span>
+                            </button>
+                        </div>
+
+                        <!-- Checklist Self-Assessment -->
+                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-2xl space-y-2">
+                            <h4 class="font-bold text-slate-700 text-xs uppercase">Self-Assessment Check:</h4>
+                            <label class="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 rounded text-pink-600 focus:ring-pink-500">
+                                Saya sudah bisa mendengarkan kata makanan dalam Bahasa Inggris.
+                            </label>
+                            <label class="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 rounded text-pink-600 focus:ring-pink-500">
+                                Saya dapat menyebutkan 3 nama makanan/minuman dengan benar.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-center">
+                        <p class="text-xs text-purple-700 font-bold mb-1">Sampai Jumpa di Pertemuan 2: "Harga Makanan & Kantin Sehat!"</p>
+                        <button onclick="triggerConfetti()" class="pid-btn bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-2 rounded-xl text-xs inline-flex items-center gap-2">
+                            <i class="fa-solid fa-hands-clapping"></i> Buka Apresiasi Kelas!
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL / NOTIFIKASI HASIL INTERAKSI PID -->
+    <div id="toast-modal" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl z-50 hidden transition-all duration-300 flex items-center gap-3">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-2xl"></i>
+        <div>
+            <h5 id="toast-title" class="font-bold text-sm">Respon PID</h5>
+            <p id="toast-msg" class="text-xs text-slate-300">Pesan umpan balik.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER INFORMASI LENGKAP PID -->
+    <footer class="bg-slate-900 text-slate-400 py-4 px-6 text-center text-xs border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div>
+                <p class="font-bold text-slate-300">SDN 7 Baru • Media Pembelajaran Interaktif PID (Papan Interaktif Digital)</p>
+                <p class="text-slate-500">Materi: Basic Daily Food and Drinks at Home and School • Kelas III Fase C</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">Model: Cooperative Learning</span>
+                <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">Versi: 1.0 (Pertemuan 1)</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // 1. ENGINE SUARA (WEB SPEECH API - SUARA ANAK LAKI-LAKI)
+        // ==========================================
+        const synth = window.speechSynthesis;
+        let boyVoice = null;
+
+        // Mencari profil suara anak laki-laki / pria muda Bahasa Inggris dari browser
+        function initBoyVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            
+            // Prioritaskan suara anak/pria muda (David, George, Guy, Boy, Child, Natural, dll)
+            boyVoice = voices.find(v => 
+                v.lang.startsWith('en') && 
+                (v.name.toLowerCase().includes('boy') || 
+                 v.name.toLowerCase().includes('child') || 
+                 v.name.toLowerCase().includes('david') || 
+                 v.name.toLowerCase().includes('george') || 
+                 v.name.toLowerCase().includes('guy') || 
+                 v.name.toLowerCase().includes('natural'))
+            ) || voices.find(v => v.lang.startsWith('en')) || null;
+        }
+
+        if (synth) {
+            initBoyVoice();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = initBoyVoice;
+            }
+        }
+
+        function speakText(text, lang = 'en-US', rate = 0.88) {
+            if (!synth) return;
+            synth.cancel(); // Hentikan audio yang sedang berjalan
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            utterance.rate = rate; // Tempo sedikit ceria khas anak-anak
+            utterance.pitch = 1.45; // Pitch tinggi disesuaikan untuk emulasi suara anak laki-laki
+
+            if (!boyVoice) initBoyVoice();
+            if (boyVoice) {
+                utterance.voice = boyVoice;
+            }
+            
+            synth.speak(utterance);
+        }
+
+        function speakVocab(word) {
+            speakText(word, 'en-US', 0.82);
+            showToast("Suara Budi", `Budi mengucapkan: "${word}"`, 'fa-volume-high text-sky-400');
+        }
+
+        // Web Audio API Sound Generator (Beep Effect)
+        function playBeep(freq = 520, type = 'sine', duration = 0.15) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration);
+                osc.stop(ctx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function playSuccessSound() {
+            playBeep(587.33, 'sine', 0.1);
+            setTimeout(() => playBeep(880, 'sine', 0.2), 100);
+        }
+
+        function playErrorSound() {
+            playBeep(220, 'square', 0.25);
+        }
+
+        function playGreetingSound() {
+            speakText("Hi friends! Good morning! I am Budi. Welcome to our English class today. How are you feeling?", 'en-US', 0.88);
+            showToast("Sapaan Budi", "Hi friends! Good morning! Welcome to English class!", "fa-comments text-emerald-400");
+        }
+
+        function playDialogAudio() {
+            const dialogText = "Hi, I am Budi. For lunch at home, I eat fried chicken and rice, and I drink water. My friend Siti drinks milk!";
+            speakText(dialogText, 'en-US', 0.85);
+            showToast("Listening Prompt", "Budi memutar cerita dialog audio...", "fa-headphones text-yellow-400");
+        }
+
+        function stopAudio() {
+            if (synth) synth.cancel();
+            showToast("Audio Stopped", "Audio dihentikan.", "fa-circle-stop text-red-400");
+        }
+
+        // ==========================================
+        // 2. NAVIGASI TAB BANTUAN
+        // ==========================================
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Reset tab button styles
+            document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+                btn.className = "pid-btn nav-tab-btn bg-white/20 hover:bg-white/30 text-white font-bold px-4 py-2 rounded-xl text-sm md:text-base flex items-center gap-2";
+            });
+
+            // Highlight active button
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            if (activeBtn) {
+                activeBtn.className = "pid-btn nav-tab-btn bg-white text-blue-700 font-bold px-4 py-2 rounded-xl text-sm md:text-base flex items-center gap-2 shadow-md";
+            }
+
+            playBeep(440, 'sine', 0.08);
+        }
+
+        // Toggle Layar Penuh PID
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    showToast("Fullscreen Error", "Tidak dapat mengaktifkan layar penuh.", "fa-circle-exclamation text-red-400");
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // ==========================================
+        // 3. LOGIKA LKPD 1 DIGITAL (CERITA SINTA)
+        // ==========================================
+        let foundWords = new Set();
+        const totalWordsTarget = 5;
+
+        function checkWord(btnElement, isCorrect) {
+            const wordText = btnElement.innerText.trim().toLowerCase();
+            
+            if (isCorrect) {
+                if (!foundWords.has(wordText)) {
+                    foundWords.add(wordText);
+                    btnElement.classList.remove('bg-white', 'text-blue-700', 'hover:bg-yellow-200');
+                    btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+                    
+                    playSuccessSound();
+                    speakText(wordText);
+                    updateLKPDDisplay();
+                    showToast("Jawaban Benar!", `Kata "${wordText}" berhasil ditemukan!`, "fa-circle-check text-emerald-400");
+                }
+            }
+        }
+
+        function updateLKPDDisplay() {
+            const container = document.getElementById('found-words-container');
+            const scoreLabel = document.getElementById('lkpd-score');
+            
+            if (foundWords.size === 0) {
+                container.innerHTML = `<span class="text-xs italic text-slate-400">Belum ada kata yang diklik di PID...</span>`;
+            } else {
+                container.innerHTML = Array.from(foundWords).map(w => 
+                    `<span class="bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold px-2.5 py-1 rounded-lg text-xs capitalize flex items-center gap-1">
+                        <i class="fa-solid fa-check text-emerald-600"></i> ${w}
+                    </span>`
+                ).join('');
+            }
+
+            const currentScore = Math.round((foundWords.size / totalWordsTarget) * 100);
+            scoreLabel.innerText = `Skor LKPD 1: ${currentScore} / 100`;
+        }
+
+        function resetLKPD1() {
+            foundWords.clear();
+            document.querySelectorAll('.lkpd-word').forEach(btn => {
+                btn.className = "lkpd-word px-2 py-0.5 rounded bg-white border border-slate-300 font-bold text-blue-700 hover:bg-yellow-200";
+            });
+            updateLKPDDisplay();
+            showToast("Reset LKPD", "Lembar kerja telah direset.", "fa-arrow-rotate-right text-blue-400");
+        }
+
+        // ==========================================
+        // 4. LOGIKA NUMERASI MINUMAN (TALLY SURVEI)
+        // ==========================================
+        let drinkCounts = { water: 0, milk: 0 };
+
+        function updateDrinkCount(drinkType, delta) {
+            drinkCounts[drinkType] = Math.max(0, drinkCounts[drinkType] + delta);
+            document.getElementById(`count-${drinkType}`).innerText = drinkCounts[drinkType];
+            
+            const total = drinkCounts.water + drinkCounts.milk;
+            document.getElementById('total-drink-members').innerText = `${total} Orang`;
+            playBeep(350 + (total * 20), 'sine', 0.1);
+        }
+
+        // ==========================================
+        // 5. GAME MATCHING AUDIO & GAMBAR PID
+        // ==========================================
+        const audioMatchMap = {
+            'fried_chicken': 'Fried Chicken',
+            'milk': 'Milk',
+            'apple': 'Apple'
+        };
+
+        function playMatchAudio(key) {
+            if (audioMatchMap[key]) {
+                speakText(audioMatchMap[key], 'en-US', 0.8);
+                showToast("Dengarkan Audio Game", `Audio: ${audioMatchMap[key]}`, "fa-volume-high text-purple-400");
+            }
+        }
+
+        function checkMatch(audioKey, selectedChoice) {
+            if (audioKey === selectedChoice) {
+                playSuccessSound();
+                speakText(`Correct! It is ${audioMatchMap[audioKey]}`);
+                showToast("Hebat! Jawabannya Tepat", `Benar! Ini adalah ${audioMatchMap[audioKey]}`, "fa-star text-yellow-400");
+            } else {
+                playErrorSound();
+                showToast("Coba Lagi", "Belum tepat, ayo coba dengarkan kembali!", "fa-circle-xmark text-red-400");
+            }
+        }
+
+        // ==========================================
+        // 6. ROLE RANDOMIZER KELOMPOK
+        // ==========================================
+        function randomizeRoles() {
+            playSuccessSound();
+            showToast("Acak Peran Kelompok", "Peran Leader, Reader, Recorder, Presenter diacak!", "fa-dice text-indigo-400");
+        }
+
+        // ==========================================
+        // 7. REFLEKSI & APRESIASI KELAS
+        // ==========================================
+        function selectFeeling(btnEl, feelingText) {
+            document.querySelectorAll('.feeling-btn').forEach(b => {
+                b.classList.remove('ring-4', 'ring-pink-400', 'bg-pink-100');
+            });
+            btnEl.classList.add('ring-4', 'ring-pink-400', 'bg-pink-100');
+            playSuccessSound();
+            showToast("Refleksi Siswa", `Perasaan hari ini: "${feelingText}"`, "fa-heart text-pink-400");
+        }
+
+        function triggerConfetti() {
+            playSuccessSound();
+            speakText("Great job friends! Excellent work today, everyone!", 'en-US', 0.9);
+            showToast("Apresiasi Budi!", "Horeee! Selamat untuk seluruh teman-teman kelas III SDN 7 Baru!", "fa-trophy text-yellow-400");
+        }
+
+        // ==========================================
+        // UTILITY TOAST NOTIFICATION
+        // ==========================================
+        let toastTimeout;
+        function showToast(title, message, iconClass = "fa-circle-check text-emerald-400") {
+            const toast = document.getElementById('toast-modal');
+            const toastTitle = document.getElementById('toast-title');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastTitle.innerText = title;
+            toastMsg.innerText = message;
+            toastIcon.className = `fa-solid ${iconClass} text-2xl`;
+
+            toast.classList.remove('hidden');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
+        // Initial setup on window load
+        window.onload = function() {
+            showToast("MPI PID Siap!", "Selamat datang di Papan Interaktif Digital SDN 7 Baru", "fa-chalkboard-user text-blue-400");
+        };
+    </script>
+</body>
+</html>
