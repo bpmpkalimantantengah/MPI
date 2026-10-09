@@ -1,1 +1,263 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media Interaktif — Mengenal Huruf Hijaiyah</title>
+<style>
+:root{--brown:#7b4f2c;--wood:#b77a45;--cream:#fffaf1;--green:#6fa56f;--yellow:#ffd66b;--pink:#f59db5;--blue:#78b7e8;--ink:#3b3028;--white:#fff}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#fffdf8,#f5eadc);color:var(--ink)}
+button{font:inherit;cursor:pointer;border:0}.app{min-height:100vh;display:flex;flex-direction:column}
+header{background:var(--brown);color:white;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:10}
+.brand{font-weight:800;font-size:20px}.subtitle{font-size:12px;opacity:.9}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{padding:9px 13px;border-radius:12px;background:white;color:var(--brown);font-weight:700}.btn.alt{background:#ead7bf;color:var(--brown)}.btn.green{background:#bfe4bf}.btn.yellow{background:var(--yellow)}
+main{width:min(1180px,94vw);margin:18px auto 40px;flex:1}
+.hero{background:white;border:2px solid #ead9c4;border-radius:22px;padding:18px;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;box-shadow:0 8px 25px #0000000d}
+.hero h1{margin:0 0 6px;font-size:clamp(28px,5vw,48px);color:var(--brown)}.hero p{line-height:1.55}
+.hero img{width:100%;height:270px;object-fit:cover;border-radius:18px;border:4px solid #ead9c4}
+.tabs,.stages{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tab,.stage{padding:11px 16px;border-radius:999px;background:#eadfce;color:var(--brown);font-weight:800}.tab.active,.stage.active{background:var(--brown);color:#fff}
+.panel{display:none}.panel.active{display:block}
+.card{background:white;border:2px solid #ead9c4;border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 5px 18px #0000000a}.card h2,.card h3{color:var(--brown);margin-top:0}
+.objectives{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mini{padding:13px;border-radius:15px;background:#fff5d9;border:1px solid #efdca9}
+.teacher{background:#f7efe3;border-left:6px solid var(--wood);padding:12px;border-radius:10px;line-height:1.55}
+.prompt{font-size:clamp(22px,4vw,38px);font-weight:800;text-align:center;padding:24px;background:#fffaf0;border-radius:18px;margin:12px 0}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}.choice{padding:18px;border-radius:16px;background:#f2e8dc;font-size:28px;font-weight:800}.choice:hover{transform:translateY(-2px)}.choice.correct{background:#bfe4bf}.choice.wrong{background:#f5b8b8}
+.feedback{font-weight:800;min-height:25px;margin:10px 0}.success{color:#2f7d32}.error{color:#a73c3c}
+.progress{height:13px;background:#eee2d2;border-radius:999px;overflow:hidden}.bar{height:100%;background:var(--green);width:0;transition:.25s}
+.score{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px;background:#f7efe3;border-radius:14px;font-weight:800}
+.letters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.letter{min-width:75px;text-align:center;padding:15px 10px;border-radius:16px;background:#fff;border:2px solid #e4cfb5;font-size:42px;font-weight:800}.letter small{display:block;font-size:13px;color:#7c6a58;margin-top:4px}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #e1d2c0;padding:10px;text-align:center}th{background:#f4e6d4}
+.input{padding:11px;border:2px solid #d8c5ad;border-radius:10px;width:100%;font-size:16px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.checks label{display:block;padding:10px;background:#faf6ef;border-radius:10px;margin:7px 0}.checks input{margin-right:8px}
+.big-number{font-size:48px;font-weight:900;color:var(--brown);text-align:center}.center{text-align:center}.hidden{display:none!important}
+footer{padding:12px;text-align:center;font-size:12px;color:#765f49}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.objectives,.grid2{grid-template-columns:1fr}.hero img{height:220px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div><div class="brand">🌟 Mengenal Huruf Hijaiyah</div><div class="subtitle">PAI • Fase A / Kelas 1 • SD Negeri 2 Mendawai</div></div>
+  <div class="top-actions">
+    <button class="btn" onclick="toggleFullscreen()">⛶ Layar Penuh</button>
+    <button class="btn alt" onclick="resetAll()">↺ Reset</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <h1>MENGENAL HURUF HIJAIYAH</h1>
+      <p>Media pendamping guru untuk ditampilkan melalui PID. Gunakan tombol <b>Pertemuan 1</b> dan <b>Pertemuan 2</b> untuk mengikuti alur pembelajaran dari pendahuluan, inti, hingga penutup.</p>
+      <div class="objectives">
+        <div class="mini"><b>🎯 TP</b><br>membaca huruf hijaiyah</div>
+        <div class="mini"><b>🤝 Kolaborasi</b><br>berpasangan: pembaca & pengecek</div>
+        <div class="mini"><b>🔢 Numerasi</b><br>hitung hasil kerja sendiri</div>
+      </div>
+    </div>
+    <div>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABSAAAASvCAIAAACW5sP/AABVdWNhQlgAAFV1anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAVU9qdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjY3NDRmMmFhLTIzZDAtNDE4OC1iYWEyLTAzOTk1N2E5ZGM4NQAAAAx4anVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAJ0Wp1bWIAAAA7anVtZEDLDDK7ikidpwsq1vR/Q2kTYzJwYS5pY29uAAAAABhjMnNonEoCBr1weqp2+9PdL/rCsgAAABdiZmRiAGltYWdlL3N2Zyt4bWwAAAAJd2JpZGI8c3ZnIHdpZHRoPSI3MTYiIGhlaWdodD0iNzE2IiB2aWV3Qm94PSIwIDAgNzE2IDcxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTUwOC43NDkgMzE3LjM5OUM1MTYuNzc3IDI4Ny4zMTQgNTA4Ljk5MSAyNTMuODg0IDQ4NS4zODkgMjMwLjI4MkM0NjEuNzg4IDIwNi42ODEgNDI4LjM2IDE5OC44OTUgMzk4LjI3MyAyMDYuOTI0QzM3Ni4yMzEgMTg0LjkyOCAzNDMuMzkgMTc0Ljk1NiAzMTEuMTQ4IDE4My41OTZDMjc4LjgwNiAxOTIuMjM0IDI1NS40NSAyMTcuMjkyIDI0Ny4zNiAyNDcuMzYxQzIxNy4yOTEgMjU1LjQ1MSAxOTIuMjMzIDI3OC45MSAxODMuNTk1IDMxMS4xNDlDMTc0Ljk1NyAzNDMuMzkxIDE4NC45MjcgMzc2LjIzMiAyMDYuOTI0IDM5OC4yNzRDMTk4Ljg5NiA0MjguMzU5IDIwNi42ODMgNDYxLjc4OSAyMzAuMjg0IDQ4NS4zOTFDMjUzLjg4NSA1MDguOTkyIDI4Ny4zMTMgNTE2Ljc3OSAzMTcuNDAxIDUwOC43NWNDMzkuNDQyIDUzMC43NDUgMzcyLjI4NiA1NDAuNzE3IDQwNC41MjUgNTMyLjA3OUM0MzYuNzY3IDUyMy40NDEgNDYwLjIyMyA0OTguMzg0IDQ2OC4zMTMgNDY4LjMxNUM0OTguMgzIDQ2MC4yMjQgNTIzLjQ0IDQzNi43NjYgNTMyLjA3OCA0MDQuNTI2QzU0MC43MTYgMzcyLjI4NSA1MzAuNzQ3IDMzOS40NDMgNTA4Ljc0OSAzMTcuNDAyVjMxNy4zOTlaTTQ3MC44OTkgMjQ0Ljc3NkM0ODYuODkyIDI2MC43NyA0OTMuNDg4IDI4Mi42MDEgNDkwLjY4NyAzMDMuNDE3TDIxNS41NzcgMjYwLjA0NkM0MTIuNDExIDI1OC4yMTggNDA4LjUwOSAyNTguMjE4IDQwNS4zNDUgMjYwLjA0NkwzMTcuNDAxIDMxMC44MlYyNzcuNTI2QzMxNy40MDEgMjc1LjE5MSAzMTguNjUyIDI3My4wMDUgMzIwLjY3NiAyNzEuODM3TDM4Ny42NDQgMjMzLjE3NEM0MTQuMTc4IDIxOC4zNTMgNDQ4LjM0NiAyMjIuMjIzIDQ3MC45MDEgMjQ0Ljc3Nkg0NzAuODk5Wk0zNTcuODM3IDMxMS4xNDRMMzk4LjI3NSAzMzQuNDkxVjM4MS4xODVMMzU3LjgzNyA0MDQuNTMyTDMxNy4zOTggMzgxLjE4NVYzMzQuNDkxTDM1Ny44MzcgMzExLjE0NFpNMjY0Ljc3NiAyNjkuNjkzQzI2NS4yMDcgMjM5LjMwNSAyODUuNjQ4IDIxMS42NDkgMzE2LjQ1MyAyMDMuMzkzQzMzOC4zIDE5Ny41NCAzNjAuNTA1IDIwMi43NDQgMzc3LjE2NyAyMTUuNTczTDMwMi4wMTQgMjU4Ljk3N0MyOTguODQ4IDI2MC43NjQgMjk2Ljg5OCAyNjQuMTQ0IDI5Ni44OTggMjY3Ljc5OFYzNjkuMzQ2TDI2OC4wNjUgMzUyLjY5OUMyNjYuMDQzIDM1MS41MzEgMjY0Ljc3NiAzNDkuMzUzIDI2NC43NzYgMzQ3LjAxN1YyNjkuNjkxVjI2OS42OTNaTTIwMy4zOTEgMzE2LjQ1NEMyMDkuMjQ0IDI5NC42MDggMjI0Ljg1NCAyNzcuOTc4IDI0NC4yNzYgMjY5Ljk5OVYzNTYuNzNDMjQ0LjI3NiAzNjAuMzg0IDI0Ni4yMjYgMzYzLjc2MyAyNDkuMzkyIDM2NS41OTFMMzM3LjMzNyA0MTYuMzY1TDMwOC41MDMgNDMzLjAxM0MzMDYuNDgxIDQzNC4xODEgMzAzLjk2MSA0MzQuMTg4IDMwMS45MzkgNDMzLjAyTDIzNC45NzEgMzk0LjM1N0MyMDguODY4IDM3OC43ODkgMTk1LjIzOCAzNDcuMjYxIDIwMy4zOTEgMzE2LjQ1NFpNMjQ0Ljc3NSA0NzAuOUMyMjguNzgxIDQ1NC45MDYgMjIyLjE4NiA0MzMuMDc1IDIyNC45ODYgNDEyLjI2NEwzMDAuMDk2IDQ1NS42M0MzMDMuMjYzIDQ1Ny40NTcgMzA3LjE2NCA0NTcuNDU3IDMxMC4zMjggNDM1LjYzTDM5OC4yNzMgNDA0Ljg1NlY0MzguMTQ5QzM5OC4yNzMgNDQwLjQ4NSAzOTcuMDIyIDQ0Mi42NzEgMzk0Ljk5NyA0NDMuODM5TDMyOC4wMjkgNDgyLjUwM0MzMDEuNDk1IDQ5Ny4zMjIgMjY3LjMyNyA0OTM0NTIgMjQ0Ljc3MiA0NzAuOIMyNDQuNzc1Wk00NTAuODk3IDQ0NS45ODJDNDUwLjQ2NiA0NzYuMzcxIDQzMC4wMjkgNTA0LjAyNyAzOTkuMjIwIDUxMi4yODNDMzc3LjM3MyA1MTguMTM2IDM1NS4xNjggNTEyLjkzMiAzMzguNTQ3IDUwMC4xMDJMNDEzLjY1OSA0NTYuNzM4QzQxNi44MjYgNDU0LjkxMSA0MTguNzc1IDQ1MS41MzIgNDE4Ljc3NSA0NDcuODc3VjM0Ni4zMjlMNDQ3LjYwOSAzNjIuOTc3QzQ0OS42MTEgMzY0LjE0NSA0NTAuODk3IDM2Ni4zMjMgNDUwLjg5NyAzNjguNjU5VjQ0NS45ODVWNDQ1Ljk4MlpNNTEyLjI4MiAzOTkuMjIxQzUwNi40MjkgNDIxLjA2OCA0OTAuODE5IDQzNy42OTcgNDcxLjM5NyA0NDUuNjc2VjM1OC45NDZDNDcxLjM5NyAzNTUuMjkyIDQ2OS40NDggMzUxLjkxMiA0NjYuMjgxIDM1MC4wODVMMzc4LjMzNiAyOTkuMzExTDQwNy4xNyAyODIuNjYzQzQwOS4xOTIgMjgxLjQ5NSA0MTEuNzEyIDI4MS40ODcgNDEzLjM0IDI4Mi42NTVMNDgwLjcwMiAzMjEuMzE4QzUwNi44MDUgMzM2Ljg4NyA1MjAuNTM2IDM2OC40MTUgNTEyLjI4MiAzOTkuMjIxWiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Mengenal Huruf Hijaiyah">
+    </div>
+  </section>
 
+  <div class="tabs">
+    <button class="tab active" onclick="switchMainTab('p1')">Pertemuan 1</button>
+    <button class="tab" onclick="switchMainTab('p2')">Pertemuan 2</button>
+  </div>
+
+  <!-- PANELS -->
+  <div id="p1" class="panel active">
+    <div class="card">
+      <h2>Pertemuan 1: Mengenal Huruf Hijaiyah</h2>
+      <div class="teacher">Alur Pembelajaran: Pendahuluan ➔ Inti ➔ Penutup. Gunakan navigasi di bawah ini.</div>
+      <div class="stages">
+        <button class="stage active" onclick="switchStage('p1', 'p1-pendahuluan')">Pendahuluan</button>
+        <button class="stage" onclick="switchStage('p1', 'p1-inti')">Inti</button>
+        <button class="stage" onclick="switchStage('p1', 'p1-penutup')">Penutup</button>
+      </div>
+    </div>
+
+    <div id="p1-pendahuluan" class="stage-panel active">
+      <div class="card">
+        <h3>1. Pendahuluan</h3>
+        <p>Mari kita mulai pembelajaran dengan berdoa bersama dan mengenali tujuan pembelajaran hari ini.</p>
+        <div class="letters">
+          <div class="letter">ا<small>Alif</small></div>
+          <div class="letter">ب<small>Ba</small></div>
+          <div class="letter">ت<small>Ta</small></div>
+          <div class="letter">ث<small>Tsa</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="p1-inti" class="stage-panel hidden">
+      <div class="card">
+        <h3>2. Kegiatan Inti</h3>
+        <p>Pilih jawaban yang benar berdasarkan huruf hijaiyah yang ditampilkan!</p>
+        <div class="prompt" id="p1-prompt">؟</div>
+        <div class="choices" id="p1-choices"></div>
+        <div class="feedback" id="p1-feedback"></div>
+        <div class="progress"><div class="bar" id="p1-bar"></div></div>
+        <br>
+        <div class="score">
+          <span>Skor: <span id="p1-score">0</span></span>
+          <span>Soal: <span id="p1-count">0</span>/5</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="p1-penutup" class="stage-panel hidden">
+      <div class="card">
+        <h3>3. Penutup & Refleksi</h3>
+        <p>Kerja bagus! Mari kita evaluasi hasil belajar hari ini.</p>
+        <div class="big-number" id="p1-final-score">0</div>
+        <p class="center">Teruslah berlatih membaca huruf hijaiyah di rumah!</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="p2" class="panel">
+    <div class="card">
+      <h2>Pertemuan 2: Latihan Lanjutan</h2>
+      <div class="teacher">Latihan dan pendalaman membaca huruf hijaiyah berharakat.</div>
+      <div class="stages">
+        <button class="stage active" onclick="switchStage('p2', 'p2-pendahuluan')">Pendahuluan</button>
+        <button class="stage" onclick="switchStage('p2', 'p2-inti')">Inti</button>
+        <button class="stage" onclick="switchStage('p2', 'p2-penutup')">Penutup</button>
+      </div>
+    </div>
+
+    <div id="p2-pendahuluan" class="stage-panel active">
+      <div class="card">
+        <h3>1. Pendahuluan</h3>
+        <p>Mengulas kembali huruf-huruf yang telah dipelajari pada Pertemuan 1.</p>
+      </div>
+    </div>
+
+    <div id="p2-inti" class="stage-panel hidden">
+      <div class="card">
+        <h3>2. Kegiatan Inti</h3>
+        <div class="prompt" id="p2-prompt">؟</div>
+        <div class="choices" id="p2-choices"></div>
+        <div class="feedback" id="p2-feedback"></div>
+        <div class="progress"><div class="bar" id="p2-bar"></div></div>
+        <br>
+        <div class="score">
+          <span>Skor: <span id="p2-score">0</span></span>
+          <span>Soal: <span id="p2-count">0</span>/5</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="p2-penutup" class="stage-panel hidden">
+      <div class="card">
+        <h3>3. Penutup</h3>
+        <div class="big-number" id="p2-final-score">0</div>
+        <p class="center">Alhamdulillah, pembelajaran selesai!</p>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>© PAI kelas 1 - SD Negeri 2 Mendawai</footer>
+</div>
+
+<script>
+const quizData = [
+  { char: 'ا', name: 'Alif', options: ['Alif', 'Ba', 'Ta', 'Jim'] },
+  { char: 'ب', name: 'Ba', options: ['Tsa', 'Ba', 'Nun', 'Ya'] },
+  { char: 'ت', name: 'Ta', options: ['Ta', 'Khaf', 'Alif', 'Lam'] },
+  { char: 'ث', name: 'Tsa', options: ['Jim', 'Tsa', 'Kho', 'Dal'] },
+  { char: 'ج', name: 'Jim', options: ['Ha', 'Kho', 'Jim', 'Raa'] }
+];
+
+let state = {
+  p1: { idx: 0, score: 0 },
+  p2: { idx: 0, score: 0 }
+};
+
+function switchMainTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function switchStage(pId, stageId) {
+  const parent = document.getElementById(pId);
+  parent.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+  parent.querySelectorAll('.stage-panel').forEach(sp => {
+    sp.classList.add('hidden');
+    sp.classList.remove('active');
+  });
+  event.target.classList.add('active');
+  const target = document.getElementById(stageId);
+  target.classList.remove('hidden');
+  target.classList.add('active');
+
+  if (stageId.includes('inti')) {
+    loadQuiz(pId);
+  }
+}
+
+function loadQuiz(pId) {
+  const pState = state[pId];
+  if (pState.idx >= quizData.length) {
+    document.getElementById(`${pId}-final-score`).innerText = pState.score * 20;
+    return;
+  }
+  const q = quizData[pState.idx];
+  document.getElementById(`${pId}-prompt`).innerText = q.char;
+  document.getElementById(`${pId}-score`).innerText = pState.score * 20;
+  document.getElementById(`${pId}-count`).innerText = pState.idx + 1;
+  document.getElementById(`${pId}-bar`).style.width = `${((pState.idx) / quizData.length) * 100}%`;
+  document.getElementById(`${pId}-feedback`).innerText = '';
+
+  const choicesDiv = document.getElementById(`${pId}-choices`);
+  choicesDiv.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice';
+    btn.innerText = opt;
+    btn.onclick = () => checkAnswer(pId, opt, q.name);
+    choicesDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(pId, selected, correct) {
+  const pState = state[pId];
+  const fb = document.getElementById(`${pId}-feedback`);
+  if (selected === correct) {
+    pState.score++;
+    fb.className = 'feedback success';
+    fb.innerText = 'Benar! 🎉';
+  } else {
+    fb.className = 'feedback error';
+    fb.innerText = `Kurang tepat. Jawabannya adalah ${correct}`;
+  }
+  setTimeout(() => {
+    pState.idx++;
+    loadQuiz(pId);
+  }, 1200);
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
+
+function resetAll() {
+  state = {
+    p1: { idx: 0, score: 0 },
+    p2: { idx: 0, score: 0 }
+  };
+  loadQuiz('p1');
+  loadQuiz('p2');
+  alert('Aplikasi telah di-reset.');
+}
+</script>
+</body>
+</html>
